@@ -10,13 +10,14 @@ screen = util.system.Screen()
 bgmusic = util.system.Music()
 Map = util.system.Map("home.json")
 player = util.player.Player()
+clock = pygame.time.Clock()
 
 log.debug("start loading the map")
 Map.load_map()
 log.debug("Map loading is done")
 
-
 while running:
+    dt = clock.tick(20)  # 20 fps
     screen.draw(Map.surface, pygame.Rect(0, 0, 512, 512))
     screen.draw(player.image, player.rect)
     screen.update()
@@ -25,8 +26,6 @@ while running:
             running = False
             screen.quit()
             bgmusic.quit()
+            break
 
-        if event.type == pygame.KEYDOWN:
-            if event.dict["key"] == pygame.K_d:
-
-                player.move(1, 0)
+        player.check_for_movement_event(event)

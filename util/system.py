@@ -16,7 +16,7 @@ class Map:
 
     def __init__(self, map_name: str):
         self.map_name = map_name
-        self.surface = pygame.surface.Surface((512, 512))
+        self.surface = pygame.surface.Surface(pygame.Vector2(512, 512))
         self.surface.fill((255, 255, 255), self.surface.get_rect())
 
     def load_map(self):
