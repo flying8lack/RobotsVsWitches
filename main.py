@@ -8,7 +8,7 @@ running = True
 pygame.init()
 screen = util.system.Screen()
 bgmusic = util.system.Music()
-Map = util.system.Map("")
+Map = util.system.Map("home.json")
 player = util.player.Player()
 
 log.debug("start loading the map")
@@ -17,7 +17,7 @@ log.debug("Map loading is done")
 
 
 while running:
-    screen.draw(Map.surface, pygame.Rect(0, 0, 600, 400))
+    screen.draw(Map.surface, pygame.Rect(0, 0, 512, 512))
     screen.draw(player.image, player.rect)
     screen.update()
     for event in pygame.event.get():

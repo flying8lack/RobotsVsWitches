@@ -16,14 +16,18 @@ class Map:
 
     def __init__(self, map_name: str):
         self.map_name = map_name
-        self.surface = pygame.surface.Surface((600, 400))
+        self.surface = pygame.surface.Surface((512, 512))
         self.surface.fill((255, 255, 255), self.surface.get_rect())
 
     def load_map(self):
-        #file = json.loads("data\\map\\"+self.map_name)
-        for x in range(75):
-            for y in range(50):
-                self.surface.blit(util.tiles.Tile("green.png", Vector(x, y), False).surface, (x * 8, y * 8, 8, 8))
+
+        with open("data\\map\\"+self.map_name, "r") as f:
+            file = json.loads(f.read())
+
+            for x in range(75):
+                for y in range(50):
+                    self.surface.blit(
+                        util.tiles.Tile(file["build"], Vector(x, y), False).surface, (x * 16, y * 16, 16, 16))
 
 
 class Music:
@@ -52,7 +56,7 @@ class Screen:
 
     def __init__(self):
         pygame.display.init()
-        self.surface = pygame.display.set_mode((600, 400))
+        self.surface = pygame.display.set_mode((512, 512))
         self.characters = pygame.sprite.Group()
 
     def draw(self, surface, dest):
