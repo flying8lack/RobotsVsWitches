@@ -1,4 +1,5 @@
 {
-  "build":"green.png",
-  "m": 45
+  "build":{
+    "background": "green.png"
+  }
 }

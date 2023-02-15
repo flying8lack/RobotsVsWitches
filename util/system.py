@@ -27,7 +27,7 @@ class Map:
             for x in range(75):
                 for y in range(50):
                     self.surface.blit(
-                        util.tiles.Tile(file["build"], Vector(x, y), False).surface, (x * 16, y * 16, 16, 16))
+                        util.tiles.Tile(file["build"]["background"], Vector(x, y), False).surface, (x * 16, y * 16, 16, 16))
 
 
 class Music:
