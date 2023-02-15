@@ -1,3 +1,5 @@
+import json
+
 import pygame
 
 import util.tiles
@@ -18,7 +20,7 @@ class Map:
         self.surface.fill((255, 255, 255), self.surface.get_rect())
 
     def load_map(self):
-        # file = json.loads("data/map/"+self.map_name)
+        #file = json.loads("data\\map\\"+self.map_name)
         for x in range(75):
             for y in range(50):
                 self.surface.blit(util.tiles.Tile("green.png", Vector(x, y), False).surface, (x * 8, y * 8, 8, 8))
