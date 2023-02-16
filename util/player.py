@@ -24,8 +24,6 @@ class Player(pygame.sprite.Sprite):
     def update_rect(self):
         self.rect = pygame.Rect(self.x * 16, self.y * 16, 16, 16)
 
-
-
     def moveTo(self, x, y):
         self.x, self.y = x, y
         self.update_rect()
@@ -45,18 +43,17 @@ class Player(pygame.sprite.Sprite):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_d:
 
-                if not self.map_obj[self.x+1][self.y].collide(self.image.get_rect()):
+                if not self.map_obj[self.x + 1][self.y].collide(self.image.get_rect()):
                     self.move(1, 0)
 
 
             elif event.key == pygame.K_a:
-                if not self.map_obj[self.x-1][self.y].collide(self.image.get_rect()):
+                if not self.map_obj[self.x - 1][self.y].collide(self.image.get_rect()):
                     self.move(-1, 0)
 
             elif event.key == pygame.K_w:
-                if not self.map_obj[self.x][self.y-1].collide(self.image.get_rect()):
+                if not self.map_obj[self.x][self.y - 1].collide(self.image.get_rect()):
                     self.move(0, -1)
             elif event.key == pygame.K_s:
-                if not self.map_obj[self.x][self.y+1].collide(self.image.get_rect()):
+                if not self.map_obj[self.x][self.y + 1].collide(self.image.get_rect()):
                     self.move(0, 1)
-
