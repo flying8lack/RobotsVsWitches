@@ -48,7 +48,7 @@ class Map:
                         self.map[x][y] = util.tiles.Tile(file["build"]["l1"][str(x)][str(y)], Vector(x, y), True,
                                                          self.tile_group)
                     except:
-                        logging.info("can't load tile")
+                        logging.warning("exception in reading file")
 
 
 
