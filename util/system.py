@@ -3,6 +3,7 @@ import json
 import pygame
 
 import util.tiles
+import util.constants
 
 
 class Vector:
@@ -16,7 +17,8 @@ class Map:
 
     def __init__(self, map_name: str):
         self.map_name = map_name
-        self.surface = pygame.surface.Surface(pygame.Vector2(512, 512))
+        self.surface = pygame.surface.Surface(pygame.Vector2(util.constants.SCREEN_WIDTH,
+                                                             util.constants.SCREEN_HEIGHT))
         self.surface.fill((255, 255, 255), self.surface.get_rect())
 
     def load_map(self):
@@ -24,11 +26,12 @@ class Map:
         with open("data\\map\\"+self.map_name, "r") as f:
             file = json.loads(f.read())
 
-            for x in range(75):
-                for y in range(50):
+            for x in range(int(util.constants.SCREEN_WIDTH/util.constants.TILE_SIZE)):
+                for y in range(int(util.constants.SCREEN_HEIGHT/util.constants.TILE_SIZE)):
                     self.surface.blit(
                         util.tiles.Tile(file["build"]["background"], Vector(x, y), False).surface,
-                        (x * 16, y * 16, 16, 16))
+                        (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
+                         util.constants.TILE_SIZE, util.constants.TILE_SIZE))
 
 
 class Music:
@@ -57,7 +60,7 @@ class Screen:
 
     def __init__(self):
         pygame.display.init()
-        self.surface = pygame.display.set_mode((512, 512))
+        self.surface = pygame.display.set_mode((util.constants.SCREEN_WIDTH, util.constants.SCREEN_HEIGHT))
         self.characters = pygame.sprite.Group()
 
     def draw(self, surface, dest):

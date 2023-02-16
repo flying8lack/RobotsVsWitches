@@ -4,7 +4,7 @@ import util.system
 import util.player
 import util.constants
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 #log = logging.getLogger("game")
 
 running = True
