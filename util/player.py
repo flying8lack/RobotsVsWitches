@@ -3,12 +3,16 @@ import math
 
 import pygame.sprite
 
+import util.system
+
 
 class Player(pygame.sprite.Sprite):
     MAX_MAP_SIZE = 32
 
-    def __init__(self):
+    def __init__(self, map_obj: util.system.Map):
         super().__init__(pygame.sprite.Group())
+
+        self.map_obj = map_obj
 
         self.walk_time = 20
         self.x = 12
@@ -40,10 +44,19 @@ class Player(pygame.sprite.Sprite):
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_d:
-                self.move(1, 0)
+
+                if not self.map_obj[self.x+1][self.y].collide(self.image.get_rect()):
+                    self.move(1, 0)
+
+
             elif event.key == pygame.K_a:
-                self.move(-1, 0)
+                if not self.map_obj[self.x-1][self.y].collide(self.image.get_rect()):
+                    self.move(-1, 0)
+
             elif event.key == pygame.K_w:
-                self.move(0, -1)
+                if not self.map_obj[self.x][self.y-1].collide(self.image.get_rect()):
+                    self.move(0, -1)
             elif event.key == pygame.K_s:
-                self.move(0, 1)
+                if not self.map_obj[self.x][self.y+1].collide(self.image.get_rect()):
+                    self.move(0, 1)
+

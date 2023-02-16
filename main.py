@@ -12,13 +12,14 @@ pygame.init()
 screen = util.system.Screen()
 bgmusic = util.system.Music()
 Map = util.system.Map("home.json")
-player = util.player.Player()
+
 clock = pygame.time.Clock()
 
 logging.info("start loading the map")
 Map.load_map()
 logging.info("Map loading is done")
 Map.draw_map()
+player = util.player.Player(Map.map)
 
 while running:
     dt = clock.tick(20)  # 20 fps

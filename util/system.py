@@ -17,6 +17,7 @@ class Vector:
 class Map:
 
     def __init__(self, map_name: str):
+        self.tile_group = pygame.sprite.Group()
         self.map_name = map_name
         self.surface = pygame.surface.Surface(pygame.Vector2(util.constants.SCREEN_WIDTH,
                                                              util.constants.SCREEN_HEIGHT))
@@ -41,22 +42,14 @@ class Map:
 
             for x in range(int(util.constants.SCREEN_WIDTH / util.constants.TILE_SIZE)):
                 for y in range(int(util.constants.SCREEN_HEIGHT / util.constants.TILE_SIZE)):
-                    self.map[x][y] = util.tiles.Tile(file["build"]["background"], Vector(x, y), False)
+                    self.map[x][y] = util.tiles.Tile(file["build"]["background"], Vector(x, y), False,
+                                                     self.tile_group)
                     try:
-                        self.map[x][y] = util.tiles.Tile(file["build"]["l1"][str(x)][str(y)], Vector(x, y), True)
+                        self.map[x][y] = util.tiles.Tile(file["build"]["l1"][str(x)][str(y)], Vector(x, y), True,
+                                                         self.tile_group)
                     except:
-                        logging.debug("can't load tile")
-                    # self.surface.blit(
-                    # util.tiles.Tile(file["build"]["background"], Vector(x, y), False).surface,
-                    # (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
-                    # util.constants.TILE_SIZE, util.constants.TILE_SIZE))
-                    '''try:
-                        #self.surface.blit(
-                            util.tiles.Tile(file["build"][str(x)][str(y)], Vector(x, y), True).surface,
-                            (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
-                             util.constants.TILE_SIZE, util.constants.TILE_SIZE))
-                    except:
-                        logging.debug("can't load tile")'''
+                        logging.info("can't load tile")
+
 
 
 class Music:

@@ -3,7 +3,8 @@
   "build":{
     "background": "grass.png",
     "l1": {
-      "6": {"5": "chest.png"}
+      "6": {"5": "chest.png"},
+      "8": {"22": "chest.png"}
     }
   }
 }
