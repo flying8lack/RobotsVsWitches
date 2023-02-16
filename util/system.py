@@ -23,15 +23,15 @@ class Map:
                                                              util.constants.SCREEN_HEIGHT))
         self.surface.fill((255, 255, 255), self.surface.get_rect())
 
-        self.map = [["o" for _ in range(int(util.constants.SCREEN_HEIGHT / util.constants.TILE_SIZE))] for _ in range(int(util.constants.SCREEN_WIDTH / util.constants.TILE_SIZE))]
+        self.map = [["o" for _ in range(int(util.constants.SCREEN_HEIGHT / util.constants.TILE_SIZE))] for _ in
+                    range(int(util.constants.SCREEN_WIDTH / util.constants.TILE_SIZE))]
 
     def draw_map(self):
 
         for x in range(int(util.constants.SCREEN_WIDTH / util.constants.TILE_SIZE)):
             for y in range(int(util.constants.SCREEN_HEIGHT / util.constants.TILE_SIZE)):
                 self.surface.blit(self.map[x][y].surface, (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
-                                                   util.constants.TILE_SIZE, util.constants.TILE_SIZE))
-
+                                                           util.constants.TILE_SIZE, util.constants.TILE_SIZE))
 
         pass
 
@@ -49,7 +49,6 @@ class Map:
                                                          self.tile_group)
                     except:
                         logging.warning("exception in reading file")
-
 
 
 class Music:
