@@ -2,6 +2,7 @@ import pygame
 import logging
 import util.system
 import util.player
+import util.constants
 
 logging.basicConfig(level=logging.DEBUG)
 #log = logging.getLogger("game")
@@ -20,7 +21,7 @@ logging.info("Map loading is done")
 
 while running:
     dt = clock.tick(20)  # 20 fps
-    screen.draw(Map.surface, pygame.Rect(0, 0, 512, 512))
+    screen.draw(Map.surface, pygame.Rect(0, 0, util.constants.SCREEN_WIDTH, util.constants.SCREEN_HEIGHT))
     screen.draw(player.image, player.rect)
     screen.update()
     for event in pygame.event.get():
