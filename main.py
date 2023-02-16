@@ -18,6 +18,7 @@ clock = pygame.time.Clock()
 logging.info("start loading the map")
 Map.load_map()
 logging.info("Map loading is done")
+Map.draw_map()
 
 while running:
     dt = clock.tick(20)  # 20 fps

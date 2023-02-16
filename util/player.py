@@ -35,16 +35,15 @@ class Player(pygame.sprite.Sprite):
             self.y += y
             self.update_rect()
 
-    def check_for_movement_event(self, event):
+    def check_for_movement_event(self, event: pygame.event.Event):
         logging.debug("checking for player movement event")
-        kb_state = pygame.key.get_pressed()
-        self.walk_time -= 1
-        if self.walk_time < 1:
-            if kb_state[pygame.K_d]:
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_d:
                 self.move(1, 0)
-            elif kb_state[pygame.K_a]:
+            elif event.key == pygame.K_a:
                 self.move(-1, 0)
-            elif kb_state[pygame.K_w]:
+            elif event.key == pygame.K_w:
                 self.move(0, -1)
-            elif kb_state[pygame.K_s]:
+            elif event.key == pygame.K_s:
                 self.move(0, 1)

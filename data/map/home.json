@@ -1,4 +1,5 @@
 {
+  "pad": 2,
   "build":{
     "background": "grass.png",
     "l1": {

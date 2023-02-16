@@ -22,24 +22,41 @@ class Map:
                                                              util.constants.SCREEN_HEIGHT))
         self.surface.fill((255, 255, 255), self.surface.get_rect())
 
+        self.map = [["o" for _ in range(int(util.constants.SCREEN_HEIGHT / util.constants.TILE_SIZE))] for _ in range(int(util.constants.SCREEN_WIDTH / util.constants.TILE_SIZE))]
+
+    def draw_map(self):
+
+        for x in range(int(util.constants.SCREEN_WIDTH / util.constants.TILE_SIZE)):
+            for y in range(int(util.constants.SCREEN_HEIGHT / util.constants.TILE_SIZE)):
+                self.surface.blit(self.map[x][y].surface, (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
+                                                   util.constants.TILE_SIZE, util.constants.TILE_SIZE))
+
+
+        pass
+
     def load_map(self):
 
-        with open("data\\map\\"+self.map_name, "r") as f:
+        with open("data\\map\\" + self.map_name, "r") as f:
             file = json.loads(f.read())
 
-            for x in range(int(util.constants.SCREEN_WIDTH/util.constants.TILE_SIZE)):
-                for y in range(int(util.constants.SCREEN_HEIGHT/util.constants.TILE_SIZE)):
-                    self.surface.blit(
-                        util.tiles.Tile(file["build"]["background"], Vector(x, y), False).surface,
-                        (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
-                         util.constants.TILE_SIZE, util.constants.TILE_SIZE))
+            for x in range(int(util.constants.SCREEN_WIDTH / util.constants.TILE_SIZE)):
+                for y in range(int(util.constants.SCREEN_HEIGHT / util.constants.TILE_SIZE)):
+                    self.map[x][y] = util.tiles.Tile(file["build"]["background"], Vector(x, y), False)
                     try:
-                        self.surface.blit(
+                        self.map[x][y] = util.tiles.Tile(file["build"]["l1"][str(x)][str(y)], Vector(x, y), True)
+                    except:
+                        logging.debug("can't load tile")
+                    # self.surface.blit(
+                    # util.tiles.Tile(file["build"]["background"], Vector(x, y), False).surface,
+                    # (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
+                    # util.constants.TILE_SIZE, util.constants.TILE_SIZE))
+                    '''try:
+                        #self.surface.blit(
                             util.tiles.Tile(file["build"][str(x)][str(y)], Vector(x, y), True).surface,
                             (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
                              util.constants.TILE_SIZE, util.constants.TILE_SIZE))
                     except:
-                        logging.debug("can't load tile")
+                        logging.debug("can't load tile")'''
 
 
 class Music:
