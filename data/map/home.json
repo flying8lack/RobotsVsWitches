@@ -1,5 +1,8 @@
 {
   "build":{
-    "background": "green.png"
+    "background": "green.png",
+    "l2": {
+
+    }
   }
 }

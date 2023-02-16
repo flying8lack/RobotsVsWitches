@@ -3,7 +3,9 @@ import logging
 import util.system
 import util.player
 
-log = logging.Logger(__name__)
+logging.basicConfig(level=logging.DEBUG)
+#log = logging.getLogger("game")
+
 running = True
 pygame.init()
 screen = util.system.Screen()
@@ -12,9 +14,9 @@ Map = util.system.Map("home.json")
 player = util.player.Player()
 clock = pygame.time.Clock()
 
-log.debug("start loading the map")
+logging.info("start loading the map")
 Map.load_map()
-log.debug("Map loading is done")
+logging.info("Map loading is done")
 
 while running:
     dt = clock.tick(20)  # 20 fps
@@ -29,3 +31,5 @@ while running:
             break
 
         player.check_for_movement_event(event)
+
+logging.debug("Closing down the program")

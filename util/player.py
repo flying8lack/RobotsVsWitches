@@ -1,3 +1,4 @@
+import logging
 import math
 
 import pygame.sprite
@@ -9,7 +10,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__(pygame.sprite.Group())
 
-        self.walk_time = 20*0.9
+        self.walk_time = 20
         self.x = 12
         self.y = 13
         self.image = pygame.surface.Surface([16, 16])  # pygame.image.load("data\\texture\\player.png")
@@ -19,9 +20,7 @@ class Player(pygame.sprite.Sprite):
     def update_rect(self):
         self.rect = pygame.Rect(self.x * 16, self.y * 16, 16, 16)
 
-    @staticmethod
-    def lerp():
-        return
+
 
     def moveTo(self, x, y):
         self.x, self.y = x, y
@@ -37,6 +36,7 @@ class Player(pygame.sprite.Sprite):
             self.update_rect()
 
     def check_for_movement_event(self, event):
+        logging.debug("checking for player movement event")
         kb_state = pygame.key.get_pressed()
         self.walk_time -= 1
         if self.walk_time < 1:
