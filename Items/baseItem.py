@@ -1,10 +1,12 @@
 from abc import ABC, abstractmethod
 
+import pygame
+
 
 class BaseItem(ABC):
 
     @abstractmethod
-    def get_texture_location(self):
+    def get_texture_location(self) -> str:
         pass
 
     @abstractmethod
@@ -12,5 +14,5 @@ class BaseItem(ABC):
         pass
 
     @abstractmethod
-    def get_surface(self):
+    def get_surface(self) -> pygame.SurfaceType:
         pass
