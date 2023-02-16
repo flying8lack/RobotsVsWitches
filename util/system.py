@@ -1,4 +1,5 @@
 import json
+import logging
 
 import pygame
 
@@ -32,6 +33,13 @@ class Map:
                         util.tiles.Tile(file["build"]["background"], Vector(x, y), False).surface,
                         (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
                          util.constants.TILE_SIZE, util.constants.TILE_SIZE))
+                    try:
+                        self.surface.blit(
+                            util.tiles.Tile(file["build"][str(x)][str(y)], Vector(x, y), True).surface,
+                            (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
+                             util.constants.TILE_SIZE, util.constants.TILE_SIZE))
+                    except:
+                        logging.debug("can't load tile")
 
 
 class Music:

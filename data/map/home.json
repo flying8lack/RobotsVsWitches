@@ -1,8 +1,8 @@
 {
   "build":{
-    "background": "green.png",
-    "l2": {
-
+    "background": "grass.png",
+    "l1": {
+      "6": {"5": "chest.png"}
     }
   }
 }
