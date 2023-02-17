@@ -22,7 +22,10 @@ class Inventory:
         return self._open
 
     def process_inventory_event(self, event: pygame.event.Event):
-        pass
+        if not self._open:
+            return
+
+        # TODO: implement inventory processing
 
     def draw_item(self, index: int):
         self.surface.blit(self.inventory[index].get_surface(),
