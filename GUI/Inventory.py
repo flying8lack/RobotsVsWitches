@@ -25,7 +25,6 @@ class Inventory:
         pass
 
     def draw_item(self, index: int):
-
         self.surface.blit(self.inventory[index].get_surface(),
                           self.inventory[index].get_rect())
 
@@ -48,7 +47,7 @@ class Inventory:
         self.set_open(False)
 
     def is_full(self):
-        return len(self.inventory) == self.INV_MAX_LENGTH
+        return len(self.inventory) > self.INV_MAX_LENGTH
 
     def insert_item(self, index: int, item: Items.baseItem.BaseItem) -> bool:
         if not self.is_full():
