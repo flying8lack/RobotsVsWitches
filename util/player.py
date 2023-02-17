@@ -24,8 +24,6 @@ class Player(pygame.sprite.Sprite):
     def update_rect(self):
         self.rect = pygame.Rect(self.x * 16, self.y * 16, 16, 16)
 
-
-
     def moveTo(self, x, y):
         self.x, self.y = x, y
         self.update_rect()
@@ -43,6 +41,11 @@ class Player(pygame.sprite.Sprite):
         logging.debug("checking for player movement event")
 
         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                self.inventory.toggle_open()
+            if self.inventory.is_open():
+                logging.debug("inventory is open, prevent player movement")
+                return
             if event.key == pygame.K_d:
                 self.move(1, 0)
             elif event.key == pygame.K_a:

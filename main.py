@@ -19,11 +19,14 @@ logging.info("start loading the map")
 Map.load_map()
 logging.info("Map loading is done")
 Map.draw_map()
+player.inventory.set_open(True)
 
 while running:
     dt = clock.tick(20)  # 20 fps
     screen.draw(Map.surface, pygame.Rect(0, 0, util.constants.SCREEN_WIDTH, util.constants.SCREEN_HEIGHT))
     screen.draw(player.image, player.rect)
+    if player.inventory.draw_surface():
+        screen.draw(player.inventory.surface, player.inventory.surface.get_rect())
     screen.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
