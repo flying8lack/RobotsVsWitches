@@ -20,6 +20,7 @@ Map.load_map()
 logging.info("Map loading is done")
 Map.draw_map()
 
+
 player = util.player.Player(Map.map)
 
 while running:

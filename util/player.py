@@ -49,6 +49,7 @@ class Player(pygame.sprite.Sprite):
                 self.inventory.toggle_open()
             if self.inventory.is_open():
                 logging.debug("inventory is open, prevent player movement")
+                self.inventory.process_inventory_event(event)
                 return
             if event.key == pygame.K_d:
 
