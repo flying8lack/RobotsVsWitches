@@ -45,6 +45,11 @@ class Player(pygame.sprite.Sprite):
         logging.debug("checking for player movement event")
 
         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                self.inventory.toggle_open()
+            if self.inventory.is_open():
+                logging.debug("inventory is open, prevent player movement")
+                return
             if event.key == pygame.K_d:
 
                 if not self.map_obj[self.x + 1][self.y].collide(self.image.get_rect()):
