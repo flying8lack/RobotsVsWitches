@@ -3,6 +3,8 @@ import math
 
 import pygame.sprite
 
+import GUI.Inventory
+
 
 class Player(pygame.sprite.Sprite):
     MAX_MAP_SIZE = 32
@@ -16,6 +18,8 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.surface.Surface([16, 16])  # pygame.image.load("data\\texture\\player.png")
         self.image.fill((255, 0, 255))
         self.rect = pygame.Rect(self.x * 16, self.y * 16, 16, 16)
+
+        self.inventory = GUI.Inventory.Inventory()
 
     def update_rect(self):
         self.rect = pygame.Rect(self.x * 16, self.y * 16, 16, 16)
