@@ -14,7 +14,6 @@ class Inventory:
         self._open = False
         self.surface = pygame.Surface((util.constants.SCREEN_WIDTH, util.constants.SCREEN_HEIGHT))
 
-
     def draw_surface(self) -> bool:
         if not self._open:
             return False
