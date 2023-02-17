@@ -1,5 +1,5 @@
 import logging
-from typing import List
+from typing import List, Optional
 
 import pygame
 
@@ -14,6 +14,19 @@ class Inventory:
         self.inventory: List[Items.baseItem.BaseItem] = []
         self._open = False
         self.surface = pygame.Surface((util.constants.SCREEN_WIDTH, util.constants.SCREEN_HEIGHT))
+        self._main_hand: Optional[Items.baseItem.BaseItem] = None
+
+    @property
+    def main_hand(self):
+        return self._main_hand
+
+    @main_hand.setter
+    def main_hand(self, item):
+        self._main_hand = item
+
+    @main_hand.deleter
+    def main_hand(self):
+        self._main_hand = None
 
     def toggle_open(self):
         self.set_open(not self._open)
@@ -32,6 +45,11 @@ class Inventory:
 
         self.surface.blit(self.inventory[index].get_surface(),
                           (18*index+94, 18*index+94, 16, 16))
+
+        pygame.draw.rect(self.surface,
+                         (128, 128, 128),
+                         (90, 90, 400 - 90, 400 - 90)
+                         )
 
     def draw_surface(self) -> bool:
         logging.debug("draw inventory onto the screen")
@@ -67,3 +85,7 @@ class Inventory:
             self.inventory.pop(index)
             return True
         return False
+
+    @main_hand.setter
+    def main_hand(self, value):
+        self._main_hand = value

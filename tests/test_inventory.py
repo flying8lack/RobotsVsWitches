@@ -2,6 +2,7 @@ import unittest
 
 import GUI.Inventory
 import Items.GunItem
+import Items.baseItem
 
 
 class MyTestCase(unittest.TestCase):
@@ -10,6 +11,7 @@ class MyTestCase(unittest.TestCase):
         self.inventory = GUI.Inventory.Inventory()
         self.item1 = Items.GunItem.GunItem()
         self.item2 = Items.GunItem.GunItem()
+
 
     def test_open_gui(self):
         self.assertEqual(self.inventory.is_open(), False)
@@ -35,6 +37,14 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(self.inventory.insert_item(4, self.item1), False)
         self.assertEqual(self.inventory.is_full(), True)
+
+    def test_main_hand(self):
+        self.assertIsNone(self.inventory.main_hand)
+        self.inventory.main_hand = self.item1
+        self.assertTrue(self.inventory.main_hand == self.item1, "They are equal")
+        self.assertIsInstance(self.inventory.main_hand, Items.baseItem.BaseItem)
+        del self.inventory.main_hand
+        self.assertIsNone(self.inventory.main_hand)
 
 
 if __name__ == '__main__':
