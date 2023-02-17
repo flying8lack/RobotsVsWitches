@@ -2,10 +2,13 @@ from abc import ABC
 
 import pygame
 
-import baseItem
+import Items.baseItem
 
 
-class GunItem(baseItem.BaseItem):
+class GunItem(Items.baseItem.BaseItem):
+
+    def use(self):
+        pass
 
     def get_texture_location(self):
         return ""
@@ -17,4 +20,5 @@ class GunItem(baseItem.BaseItem):
         return self.surface
 
     def __init__(self):
-        self.surface = pygame.image.load(self.get_texture_location())
+        #self.surface = pygame.image.load(self.get_texture_location())
+        pass
