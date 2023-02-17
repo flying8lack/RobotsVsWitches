@@ -31,7 +31,7 @@ class Inventory:
     def draw_item(self, index: int):
 
         self.surface.blit(self.inventory[index].get_surface(),
-                          self.inventory[index].get_rect())
+                          (18*index+94, 18*index+94, 16, 16))
 
     def draw_surface(self) -> bool:
         logging.debug("draw inventory onto the screen")
@@ -42,7 +42,9 @@ class Inventory:
                              (128, 128, 128),
                              (90, 90, 400 - 90, 400 - 90)
                              )
-            self.surface.set_alpha(128)
+            self.surface.set_alpha(250)
+            for i in range(len(self.inventory)):
+                self.draw_item(i)
             return True
 
     def set_open(self, state: bool):
