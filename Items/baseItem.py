@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
-
+from util.dataStorage import DataStore
 import pygame
 
 
-class BaseItem(ABC):
+class BaseItem(DataStore, ABC):
 
     @abstractmethod
     def use(self):

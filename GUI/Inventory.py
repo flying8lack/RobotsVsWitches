@@ -12,7 +12,6 @@ class Inventory(DataStore):
     def saveData(self):
         pass
 
-
     def readData(self):
         pass
 
@@ -52,7 +51,7 @@ class Inventory(DataStore):
     def draw_item(self, index: int):
 
         self.surface.blit(self.inventory[index].get_surface(),
-                          (18*index+94, 18*index+94, 16, 16))
+                          (18 * index + 94, 18 * index + 94, 16, 16))
 
         pygame.draw.rect(self.surface,
                          (128, 128, 128),

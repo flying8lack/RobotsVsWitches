@@ -7,6 +7,12 @@ import Items.baseItem
 
 class GunItem(Items.baseItem.BaseItem):
 
+    def saveData(self):
+        pass
+
+    def readData(self):
+        pass
+
     def use(self):
         pass
 
