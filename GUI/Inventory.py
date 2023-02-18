@@ -22,6 +22,7 @@ class Inventory(DataStore):
         self._open = False
         self.surface = pygame.Surface((util.constants.SCREEN_WIDTH, util.constants.SCREEN_HEIGHT))
         self._main_hand: Optional[Items.baseItem.BaseItem] = None
+        self._select_item: Optional[Items.baseItem.BaseItem] = None
 
     @property
     def main_hand(self):
@@ -45,6 +46,9 @@ class Inventory(DataStore):
         logging.debug("processing inventory event")
         if not self._open:
             return
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            event.pos[0]
 
         # TODO: implement inventory processing
 
