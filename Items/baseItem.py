@@ -6,7 +6,7 @@ import pygame
 class BaseItem(DataStore, ABC):
 
     @abstractmethod
-    def use(self):
+    def use(self, *args):
         pass
 
     @abstractmethod
