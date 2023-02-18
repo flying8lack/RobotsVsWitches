@@ -18,11 +18,19 @@ class Inventory(DataStore):
     INV_MAX_LENGTH = 4
 
     def __init__(self):
-        self.inventory: List[Items.baseItem.BaseItem] = []
+        self.inventory: List[Optional[Items.baseItem.BaseItem]] = [None, None, None, None]
         self._open: bool = False
         self.surface = pygame.Surface((util.constants.SCREEN_WIDTH, util.constants.SCREEN_HEIGHT))
         self._main_hand: Optional[Items.baseItem.BaseItem] = None
         self._select_item: Optional[Items.baseItem.BaseItem] = None
+
+    def get_item(self, index: int):
+        if index >= self.INV_MAX_LENGTH:
+            return False
+        return self.inventory[index]
+
+    def append_item(self, item: Items.baseItem.BaseItem):
+        self.inventory.append(item)
 
     @property
     def select_item(self):
@@ -102,7 +110,11 @@ class Inventory(DataStore):
 
     def insert_item(self, index: int, item: Items.baseItem.BaseItem) -> bool:
         if index >= self.INV_MAX_LENGTH:
-            return False
+            logging.error(f"Attempt at accessing array  slot {index} which is out of bounds")
+            raise IndexError()
+        if index < 0:
+            logging.critical(f"Attempt at accessing array  slot {index} which is out of bounds")
+            raise IndexError()
         self.inventory.insert(index, item)
         self.inventory[index].update_location(index)
         return True

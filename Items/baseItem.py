@@ -17,9 +17,8 @@ class BaseItem(DataStore, ABC):
     def get_texture_location(self) -> str:
         pass
 
-    @abstractmethod
     def get_rect(self) -> pygame.rect.Rect:
-        pass
+        return pygame.Rect(34 * self.location + 94, 94, 32, 32)
 
     @abstractmethod
     def get_surface(self) -> pygame.SurfaceType:
