@@ -3,12 +3,14 @@ import unittest
 import GUI.Inventory
 import Items.GunItem
 import Items.baseItem
+import os
 
 
 class MyTestCase(unittest.TestCase):
 
     def setUp(self):
         self.inventory = GUI.Inventory.Inventory()
+        os.chdir("C:\\Users\\flyin\\OneDrive - Northumbria University - Production Azure AD\\Desktop\\CyberFun\\RPG game in 7 days")
         self.item1 = Items.GunItem.GunItem()
         self.item2 = Items.GunItem.GunItem()
 

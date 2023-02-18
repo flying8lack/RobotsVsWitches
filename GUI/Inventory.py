@@ -18,7 +18,7 @@ class Inventory(DataStore):
     INV_MAX_LENGTH = 4
 
     def __init__(self):
-        self.inventory: List[Optional[Items.baseItem.BaseItem]] = [None, None, None, None]
+        self.inventory: List[Items.baseItem.BaseItem] = []
         self._open: bool = False
         self.surface = pygame.Surface((util.constants.SCREEN_WIDTH, util.constants.SCREEN_HEIGHT))
         self._main_hand: Optional[Items.baseItem.BaseItem] = None
@@ -98,9 +98,11 @@ class Inventory(DataStore):
         self.set_open(False)
 
     def is_full(self):
-        return len(self.inventory) == self.INV_MAX_LENGTH
+        return len(self.inventory) >= self.INV_MAX_LENGTH
 
     def insert_item(self, index: int, item: Items.baseItem.BaseItem) -> bool:
+        if index >= self.INV_MAX_LENGTH:
+            return False
         self.inventory.insert(index, item)
         self.inventory[index].update_location(index)
         return True
