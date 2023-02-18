@@ -18,11 +18,23 @@ class Inventory(DataStore):
     INV_MAX_LENGTH = 4
 
     def __init__(self):
-        self.inventory: List[Items.baseItem.BaseItem] = []
-        self._open = False
+        self.inventory: List[Optional[Items.baseItem.BaseItem]] = [None, None, None, None]
+        self._open: bool = False
         self.surface = pygame.Surface((util.constants.SCREEN_WIDTH, util.constants.SCREEN_HEIGHT))
         self._main_hand: Optional[Items.baseItem.BaseItem] = None
         self._select_item: Optional[Items.baseItem.BaseItem] = None
+
+    @property
+    def select_item(self):
+        return self._select_item
+
+    @select_item.setter
+    def select_item(self, value: Optional[Items.baseItem.BaseItem]):
+        self._select_item = value
+
+    @select_item.deleter
+    def select_item(self):
+        self._select_item = None
 
     @property
     def main_hand(self):
@@ -48,9 +60,22 @@ class Inventory(DataStore):
             return
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            self.main_hand.get_rect().collidepoint(event.pos[0], event.pos[1])
+            if self.main_hand.get_rect().collidepoint(event.pos[0], event.pos[1]):
+                self.select_item = self.main_hand
+                return
 
-        # TODO: implement inventory processing
+            if self.inventory[0].get_rect().collidepoint(event.pos[0], event.pos[1]):
+                self.select_item = self.main_hand
+                return
+            if self.inventory[1].get_rect().collidepoint(event.pos[0], event.pos[1]):
+                self.select_item = self.main_hand
+                return
+            if self.inventory[2].get_rect().collidepoint(event.pos[0], event.pos[1]):
+                self.select_item = self.main_hand
+                return
+            if self.inventory[3].get_rect().collidepoint(event.pos[0], event.pos[1]):
+                self.select_item = self.main_hand
+                return
 
     def draw_item(self, index: int):
 

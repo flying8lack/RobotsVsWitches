@@ -3,6 +3,7 @@ import logging
 import util.system
 import util.player
 import util.constants
+import Items.GunItem
 
 logging.basicConfig(level=logging.INFO)
 #log = logging.getLogger("game")
@@ -22,6 +23,7 @@ Map.draw_map()
 
 
 player = util.player.Player(Map.map)
+gun = Items.GunItem.GunItem()
 
 while running:
     dt = clock.tick(20)  # 20 fps

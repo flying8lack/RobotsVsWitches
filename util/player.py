@@ -12,7 +12,7 @@ class Player(pygame.sprite.Sprite):
     MAX_MAP_SIZE = 32
 
     def __init__(self, map_obj: util.system.Map):
-        super().__init__(pygame.sprite.Group())
+        super().__init__()
 
         self.map_obj = map_obj
 
