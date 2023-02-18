@@ -5,12 +5,13 @@ import pygame
 
 import Items.baseItem
 import util.constants
-import util.dataStorage
+from util.dataStorage import DataStore
 
 
-class Inventory(util.dataStorage.DataStore):
+class Inventory(DataStore):
     def saveData(self):
         pass
+
 
     def readData(self):
         pass
