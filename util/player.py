@@ -55,8 +55,6 @@ class Player(pygame.sprite.Sprite):
 
                 if not self.map_obj[self.x + 1][self.y].collide(self.image.get_rect()):
                     self.move(1, 0)
-
-
             elif event.key == pygame.K_a:
                 if not self.map_obj[self.x - 1][self.y].collide(self.image.get_rect()):
                     self.move(-1, 0)

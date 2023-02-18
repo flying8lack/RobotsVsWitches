@@ -3,7 +3,7 @@ from util.dataStorage import DataStore
 import pygame
 
 
-class BaseItem(pygame.sprite.Sprite, DataStore, ABC):
+class BaseItem(DataStore, ABC):
 
     @abstractmethod
     def use(self):

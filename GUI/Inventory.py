@@ -48,7 +48,7 @@ class Inventory(DataStore):
             return
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            event.pos[0]
+            self.main_hand.get_rect().collidepoint(event.pos[0], event.pos[1])
 
         # TODO: implement inventory processing
 

@@ -26,6 +26,5 @@ class GunItem(Items.baseItem.BaseItem):
         return self.surface
 
     def __init__(self):
-        super().__init__()
         #self.surface = pygame.image.load(self.get_texture_location())
         pass
