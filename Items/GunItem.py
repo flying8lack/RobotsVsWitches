@@ -17,7 +17,7 @@ class GunItem(Items.baseItem.BaseItem):
         pass
 
     def get_texture_location(self):
-        return ""
+        return "data\\texture\\items\\gun.png"
 
     def get_rect(self):
         return self.surface.get_rect()
@@ -26,5 +26,5 @@ class GunItem(Items.baseItem.BaseItem):
         return self.surface
 
     def __init__(self):
-        #self.surface = pygame.image.load(self.get_texture_location())
-        pass
+        self.surface = pygame.image.load(self.get_texture_location())
+

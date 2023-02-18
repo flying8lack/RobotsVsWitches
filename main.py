@@ -24,6 +24,7 @@ Map.draw_map()
 
 player = util.player.Player(Map.map)
 gun = Items.GunItem.GunItem()
+player.inventory.insert_item(0, gun)
 
 while running:
     dt = clock.tick(20)  # 20 fps

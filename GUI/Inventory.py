@@ -66,26 +66,28 @@ class Inventory(DataStore):
 
             if self.inventory[0].get_rect().collidepoint(event.pos[0], event.pos[1]):
                 self.select_item = self.main_hand
+                logging.info("selected item from slot 0")
                 return
             if self.inventory[1].get_rect().collidepoint(event.pos[0], event.pos[1]):
                 self.select_item = self.main_hand
+                logging.info("selected item from slot 1")
                 return
             if self.inventory[2].get_rect().collidepoint(event.pos[0], event.pos[1]):
                 self.select_item = self.main_hand
+                logging.info("selected item from slot 2")
                 return
             if self.inventory[3].get_rect().collidepoint(event.pos[0], event.pos[1]):
                 self.select_item = self.main_hand
+                logging.info("selected item from slot 3")
                 return
 
     def draw_item(self, index: int):
 
+        if self.inventory[index] is None:
+            return
+
         self.surface.blit(self.inventory[index].get_surface(),
                           (18 * index + 94, 18 * index + 94, 16, 16))
-
-        pygame.draw.rect(self.surface,
-                         (128, 128, 128),
-                         (90, 90, 400 - 90, 400 - 90)
-                         )
 
     def draw_surface(self) -> bool:
         logging.debug("draw inventory onto the screen")
@@ -96,7 +98,7 @@ class Inventory(DataStore):
                              (128, 128, 128),
                              (90, 90, 400 - 90, 400 - 90)
                              )
-            self.surface.set_alpha(250)
+            self.surface.set_alpha(200)
             for i in range(len(self.inventory)):
                 self.draw_item(i)
             return True
@@ -108,13 +110,11 @@ class Inventory(DataStore):
         self.set_open(False)
 
     def is_full(self):
-        return len(self.inventory) > self.INV_MAX_LENGTH
+        return len(self.inventory) == self.INV_MAX_LENGTH
 
     def insert_item(self, index: int, item: Items.baseItem.BaseItem) -> bool:
-        if not self.is_full():
-            self.inventory.insert(index, item)
-            return True
-        return False
+        self.inventory.insert(index, item)
+        return True
 
     def remove_item(self, index: int) -> bool:
         if len(self.inventory) >= index:
