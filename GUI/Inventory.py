@@ -5,9 +5,16 @@ import pygame
 
 import Items.baseItem
 import util.constants
+import util.dataStorage
 
 
-class Inventory:
+class Inventory(util.dataStorage.DataStore):
+    def saveData(self):
+        pass
+
+    def readData(self):
+        pass
+
     INV_MAX_LENGTH = 4
 
     def __init__(self):
