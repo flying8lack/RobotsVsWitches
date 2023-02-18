@@ -60,7 +60,7 @@ class Inventory(DataStore):
             return
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            for i in range(4):
+            for i in range(len(self.inventory)):
                 if self.inventory[i] is None:
                     continue
                 else:
