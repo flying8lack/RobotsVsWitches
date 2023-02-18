@@ -44,4 +44,5 @@ while running:
 
         player.check_for_movement_event(event)
 
+
 logging.debug("Closing down the program")

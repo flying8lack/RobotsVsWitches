@@ -60,26 +60,13 @@ class Inventory(DataStore):
             return
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.main_hand.get_rect().collidepoint(event.pos[0], event.pos[1]):
-                self.select_item = self.main_hand
-                return
-
-            if self.inventory[0].get_rect().collidepoint(event.pos[0], event.pos[1]):
-                self.select_item = self.main_hand
-                logging.info("selected item from slot 0")
-                return
-            if self.inventory[1].get_rect().collidepoint(event.pos[0], event.pos[1]):
-                self.select_item = self.main_hand
-                logging.info("selected item from slot 1")
-                return
-            if self.inventory[2].get_rect().collidepoint(event.pos[0], event.pos[1]):
-                self.select_item = self.main_hand
-                logging.info("selected item from slot 2")
-                return
-            if self.inventory[3].get_rect().collidepoint(event.pos[0], event.pos[1]):
-                self.select_item = self.main_hand
-                logging.info("selected item from slot 3")
-                return
+            for i in range(4):
+                if self.inventory[i] is None:
+                    continue
+                else:
+                    if self.inventory[i].get_rect().collidepoint(event.pos[0], event.pos[1]):
+                        self.select_item = self.inventory[i]
+                        logging.info(f"selected item from slot {i}")
 
     def draw_item(self, index: int):
 
@@ -87,7 +74,8 @@ class Inventory(DataStore):
             return
 
         self.surface.blit(self.inventory[index].get_surface(),
-                          (18 * index + 94, 18 * index + 94, 16, 16))
+                          self.inventory[index].get_rect())
+        # (18 * index + 94, 18 * index + 94, 16, 16))
 
     def draw_surface(self) -> bool:
         logging.debug("draw inventory onto the screen")
@@ -114,6 +102,7 @@ class Inventory(DataStore):
 
     def insert_item(self, index: int, item: Items.baseItem.BaseItem) -> bool:
         self.inventory.insert(index, item)
+        self.inventory[index].update_location(index)
         return True
 
     def remove_item(self, index: int) -> bool:

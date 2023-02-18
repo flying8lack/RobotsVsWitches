@@ -6,6 +6,10 @@ import pygame
 class BaseItem(DataStore, ABC):
 
     @abstractmethod
+    def update_location(self, newlocation: int):
+        pass
+
+    @abstractmethod
     def use(self, *args):
         pass
 

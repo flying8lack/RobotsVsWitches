@@ -16,6 +16,8 @@ class Player(pygame.sprite.Sprite):
 
         self.map_obj = map_obj
 
+        self._player_movement = True
+
         self.walk_time = 20
         self.x = 12
         self.y = 13
@@ -44,24 +46,33 @@ class Player(pygame.sprite.Sprite):
     def check_for_movement_event(self, event: pygame.event.Event):
         logging.debug("checking for player movement event")
 
+        if self.inventory.is_open():
+            self._player_movement = False
+            logging.debug("inventory is open, prevent player movement")
+            self.inventory.process_inventory_event(event)
+        else:
+            self._player_movement = True
+
         if event.type == pygame.KEYDOWN:
+
             if event.key == pygame.K_SPACE:
                 self.inventory.toggle_open()
-            if self.inventory.is_open():
-                logging.debug("inventory is open, prevent player movement")
-                self.inventory.process_inventory_event(event)
-                return
-            if event.key == pygame.K_d:
 
-                if not self.map_obj[self.x + 1][self.y].collide(self.image.get_rect()):
-                    self.move(1, 0)
-            elif event.key == pygame.K_a:
-                if not self.map_obj[self.x - 1][self.y].collide(self.image.get_rect()):
-                    self.move(-1, 0)
 
-            elif event.key == pygame.K_w:
-                if not self.map_obj[self.x][self.y - 1].collide(self.image.get_rect()):
-                    self.move(0, -1)
-            elif event.key == pygame.K_s:
-                if not self.map_obj[self.x][self.y + 1].collide(self.image.get_rect()):
-                    self.move(0, 1)
+
+            if self._player_movement:
+
+                if event.key == pygame.K_d:
+
+                    if not self.map_obj[self.x + 1][self.y].collide(self.image.get_rect()):
+                        self.move(1, 0)
+                elif event.key == pygame.K_a:
+                    if not self.map_obj[self.x - 1][self.y].collide(self.image.get_rect()):
+                        self.move(-1, 0)
+
+                elif event.key == pygame.K_w:
+                    if not self.map_obj[self.x][self.y - 1].collide(self.image.get_rect()):
+                        self.move(0, -1)
+                elif event.key == pygame.K_s:
+                    if not self.map_obj[self.x][self.y + 1].collide(self.image.get_rect()):
+                        self.move(0, 1)
