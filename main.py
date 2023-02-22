@@ -1,11 +1,16 @@
 import pygame
 import logging
+
+import NPC.Enemy.TestEnemy
 import util.system
 import util.player
 import util.constants
+from battle.BattleScreen import BattleScreen
 
 logging.basicConfig(level=logging.INFO)
 #log = logging.getLogger("game")
+
+
 
 running = True
 pygame.init()
@@ -20,11 +25,18 @@ Map.load_map()
 logging.info("Map loading is done")
 Map.draw_map()
 player = util.player.Player(Map.map)
+enemy = NPC.Enemy.TestEnemy.TestEnemy()
+
+test_battle = BattleScreen(player, enemy)
+
+
 
 while running:
     dt = clock.tick(20)  # 20 fps
     screen.draw(Map.surface, pygame.Rect(0, 0, util.constants.SCREEN_WIDTH, util.constants.SCREEN_HEIGHT))
     screen.draw(player.image, player.rect)
+    test_battle.draw()
+    screen.draw(test_battle.final_surface, test_battle.final_surface.get_rect())
     screen.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

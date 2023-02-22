@@ -1,9 +1,12 @@
 from abc import ABC, abstractmethod
 
+import battle.Stats
+
 
 class AbstractEnemy(ABC):
+
     @abstractmethod
-    def get_stat(self):
+    def get_stat(self) -> battle.Stats.Stat:
         pass
 
     @abstractmethod

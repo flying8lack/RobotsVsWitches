@@ -26,12 +26,15 @@ class Map:
         self.map = [["o" for _ in range(int(util.constants.SCREEN_HEIGHT / util.constants.TILE_SIZE))] for _ in
                     range(int(util.constants.SCREEN_WIDTH / util.constants.TILE_SIZE))]
 
+    def update_camera(self, cx, cy):
+        self.tile_group.update(cx, cy)
+
     def draw_map(self):
 
         for x in range(int(util.constants.SCREEN_WIDTH / util.constants.TILE_SIZE)):
             for y in range(int(util.constants.SCREEN_HEIGHT / util.constants.TILE_SIZE)):
-                self.surface.blit(self.map[x][y].surface, (x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
-                                                           util.constants.TILE_SIZE, util.constants.TILE_SIZE))
+                self.surface.blit(self.map[x][y].surface, self.map[x][y].Rect)#(x * util.constants.TILE_SIZE, y * util.constants.TILE_SIZE,
+                                                           #util.constants.TILE_SIZE, util.constants.TILE_SIZE))
 
         pass
 
@@ -42,12 +45,13 @@ class Map:
 
             for x in range(int(util.constants.SCREEN_WIDTH / util.constants.TILE_SIZE)):
                 for y in range(int(util.constants.SCREEN_HEIGHT / util.constants.TILE_SIZE)):
-                    self.map[x][y] = util.tiles.Tile(file["build"]["background"], Vector(x, y), False,
-                                                     self.tile_group)
+
                     try:
                         self.map[x][y] = util.tiles.Tile(file["build"]["l1"][str(x)][str(y)], Vector(x, y), True,
                                                          self.tile_group)
                     except:
+                        self.map[x][y] = util.tiles.Tile(file["build"]["background"], Vector(x, y), False,
+                                                         self.tile_group)
                         logging.warning("exception in reading file")
 
 

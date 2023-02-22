@@ -3,6 +3,7 @@ import math
 
 import pygame.sprite
 
+import battle.Stats
 import util.system
 
 
@@ -14,15 +15,24 @@ class Player(pygame.sprite.Sprite):
 
         self.map_obj = map_obj
 
+
+
         self.walk_time = 20
         self.x = 12
         self.y = 13
+        self.stat = battle.Stats.Stat(20)
         self.image = pygame.surface.Surface([16, 16])  # pygame.image.load("data\\texture\\player.png")
         self.image.fill((255, 0, 255))
         self.rect = pygame.Rect(self.x * 16, self.y * 16, 16, 16)
 
+        self.battle_image = self.image#pygame.image.load("data\\battle\\player.png")
+        self.battle_rect = self.battle_image.get_rect()
+        self.battle_rect.update(512 / 2, 512 - 128, 16, 16)
+
     def update_rect(self):
         self.rect = pygame.Rect(self.x * 16, self.y * 16, 16, 16)
+        self.camera_x = self.x
+        self.camera_y = self.y
 
     def moveTo(self, x, y):
         self.x, self.y = x, y
