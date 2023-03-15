@@ -9,9 +9,10 @@ class TestEnemy(AbstractEnemy):
     def __init__(self):
         self.surface = pygame.Surface([16, 16])
         self.surface.fill((240, 98, 20))
+        self.stat = Stat(12)
 
     def get_stat(self) -> Stat:
-        return Stat(12)
+        return self.stat
 
     def get_name(self) -> str:
         return "TEST"
